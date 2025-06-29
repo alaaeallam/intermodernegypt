@@ -227,12 +227,17 @@ p {
   height: 100vh;
   position: relative;
   overflow: hidden;
+  padding: 0 1rem;
 }
 
 .cards-container {
   position: relative;
   width: 50%;
+  min-width: 280px;
+  max-width: 500px;
   height: 80vh;
+  min-height: 320px;
+  max-height: 600px;
   border-radius: 0.5em;
   overflow: hidden;
 }
@@ -243,6 +248,8 @@ p {
   height: 100%;
   border-radius: 0.5em;
   overflow: hidden;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
 
 .tag {
@@ -523,5 +530,39 @@ p {
 
   .animated-cards-header {
     transform: translateY(0%) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .cards-container {
+    width: 90vw;
+    height: 60vw;
+    min-height: 200px;
+    max-height: 70vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .tag p {
+    font-size: 10px;
+  }
+  .intro h1, .outro h1 {
+    font-size: 1.2rem;
+  }
+  .sticky-cards {
+    height: 70vh;
+    padding: 0 0.5rem;
+  }
+  .cards-container {
+    width: 100vw;
+    height: 60vw;
+    min-width: 0;
+    min-height: 160px;
+    max-width: 100vw;
+    max-height: 60vh;
+    border-radius: 0.25em;
+  }
+  .card {
+    border-radius: 0.25em;
   }
 }
