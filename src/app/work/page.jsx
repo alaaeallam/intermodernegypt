@@ -35,22 +35,12 @@ const Work = () => {
 
   return (
     <>
-     
         <div className="revealer"></div>
         <div className="work">
-          <h1>selected work</h1>
           <AnimatedCardGallery />
-          {/* <div className="projects">
-            <img src="/img1.jpg" alt="" />
-            <img src="/img2.jpg" alt="" />
-            <img src="/img3.jpg" alt="" />
-            <img src="/img4.jpg" alt="" />
-          </div> */}
-           {/* Add cards inside the .work container */}
         <div style={{ marginTop: "10vh" }}>
         </div>
       </div>
-
   </>
   );
 };
