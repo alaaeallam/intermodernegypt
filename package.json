@@ -20,5 +20,8 @@
     "react-countup": "^6.5.3",
     "react-dom": "^18.2.0",
     "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.11"
   }
 }
