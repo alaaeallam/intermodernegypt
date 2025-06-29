@@ -1,42 +1,527 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --bg: #fff;
+  --fg: #0a0a0a;
 }
 
 * {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-a {
-  color: inherit;
+body {
+  font-family: "TWK Lausanne", "Inter";
+  color: var(--fg);
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  font-size: 4.25rem;
+  font-weight: 600;
+  letter-spacing: -0.1rem;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.04rem;
+  line-height: 1.125;
+  -webkit-font-smoothing: antialiased;
+}
+
+a,
+p {
+  display: block;
   text-decoration: none;
+  color: var(--fg);
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 1em;
+  display: flex;
+  gap: 1em;
+  z-index: 2;
+}
+
+.nav .col:nth-child(1) {
+  flex: 1;
+}
+
+.nav .col:nth-child(2) {
+  flex: 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.home {
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  background-color: var(--bg);
+}
+
+.home .header {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.home .header h1 {
+  font-size: 30.5vw;
+  text-align: center;
+}
+
+.home .hero-img {
+  position: absolute;
+  left: 80%;
+  bottom: 0%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 50vh;
+  overflow: hidden;
+}
+.imc-i {
+  color: #f99a27;
+}
+
+.imc-mc {
+  color: #012e57;
+}
+.work {
+  min-height: 300vh; /* or higher */
+  padding: 15em 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  background-color: var(--bg);
+}
+
+.work .projects {
+  width: 32%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4em;
+}
+
+.work .projects img {
+  aspect-ratio: 4/5;
+}
+
+.studio,
+.contact {
+  padding: 15em 1em;
+  display: flex;
+  gap: 1em;
+  background-color: var(--bg);
+}
+
+.studio .col:nth-child(1),
+.contact .col:nth-child(1) {
+  flex: 1;
+}
+
+.studio .col:nth-child(2),
+.contact .col:nth-child(2) {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.studio .about-img {
+  aspect-ratio: 5/7;
+}
+
+.contact {
+  width: 100vw;
+  height: 100%;
+  min-height: 100svh;
+}
+
+.contact .socials {
+  position: absolute;
+  bottom: 1.5em;
+  display: flex;
+  gap: 1em;
+}
+
+.letter,
+.word,
+.line {
+  position: relative;
+  display: inline-block;
+  will-change: transform;
+}
+
+.revealer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  transform-origin: center top;
+  background-color: var(--fg);
+  pointer-events: none;
+  z-index: 2;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
+}
+
+::view-transition-group(root) {
+  z-index: auto !important;
+}
+
+::view-transition-image-pair(root) {
+  isolation: isolate;
+  will-change: clip-path;
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 10000;
+  animation: none !important;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+  animation: none !important;
+}
+
+@media (max-width: 900px) {
+  .work .projects {
+    width: 90%;
+  }
+
+  .studio,
+  .contact {
+    flex-direction: column;
+  }
+}
+
+.sticky-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: #fff;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.cards-container {
+  position: relative;
+  width: 50%;
+  height: 80vh;
+  border-radius: 0.5em;
+  overflow: hidden;
+}
+
+.card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5em;
+  overflow: hidden;
+}
+
+.tag {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  padding: 0.5em 0.75em;
+  border-radius: 0.25em;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+}
+
+.tag p {
+  color: #fff !important;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: "IBM Plex Mono", monospace;
+}
+.intro,
+.outro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Floating Cards Section — Scoped to .floating-cards-section */
+.floating-cards-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  padding: 4rem 2rem;
+}
+
+.floating-card {
+  width: 300px;
+  height: 450px;
+  perspective: 1000px;
+  position: relative;
+}
+
+.floating-card-wrapper {
+  width: 100%;
+  height: 100%;
+  animation: floating 3s infinite ease-in-out;
+}
+
+#floating-card-1 .floating-card-wrapper { animation-delay: 0s; }
+#floating-card-2 .floating-card-wrapper { animation-delay: 0.2s; }
+#floating-card-3 .floating-card-wrapper { animation-delay: 0.4s; }
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 0.8em;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 1em;
+}
+
+.flip-card-front {
+  background: #222;
+  color: #fff;
+}
+
+.flip-card-back {
+  background: #fff;
+  color: #000;
+  transform: rotateY(180deg);
+}
+
+.animated-cards-section {
+  background-color: #f9f4eb;
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  padding: 4rem 1rem;
+}
+
+
+.animated-cards-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  transition: transform 0.3s ease-out;
+}
+
+.animated-cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.animated-card {
+  flex: 1 1 300px;
+  height: 450px;
+  perspective: 1000px;
+  position: relative;
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.card-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.flip-card-inner {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+  position: relative;
+}
+
+.flip-card-front,
+.flip-card-back {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  position: absolute;
+  backface-visibility: hidden;
+  overflow: hidden;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.flip-card-front {
+  background-color: #f9f4eb;
+  color: #000;
+}
+
+.flip-card-back {
+  background: #fff;
+  color: #000;
+  transform: rotateY(180deg);
+}
+
+.card-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.card-copy p {
+  background-color: #f0ece5;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Optional: Flip on hover (for testing without GSAP flip logic) */
+.animated-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+
+
+/* === Floating Cards Section (Scoped) === */
+.floating-cards-section {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  padding: 4rem 2rem;
+}
+
+.floating-card {
+  width: 300px;
+  height: 450px;
+  perspective: 1000px;
+  position: relative;
+}
+
+.floating-card-wrapper {
+  width: 100%;
+  height: 100%;
+  animation: floating 3s infinite ease-in-out;
+}
+
+#floating-card-1 .floating-card-wrapper { animation-delay: 0s; }
+#floating-card-2 .floating-card-wrapper { animation-delay: 0.2s; }
+#floating-card-3 .floating-card-wrapper { animation-delay: 0.4s; }
+
+.floating-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.floating-card-front,
+.floating-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 0.8em;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 1em;
+}
+
+.floating-card-front {
+  background: #222;
+  color: #fff;
+}
+
+.floating-card-back {
+  background: #fff;
+  color: #000;
+  transform: rotateY(180deg);
+}
+
+
+@keyframes floating {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Fix animation reset on mobile */
+@media (max-width: 1000px) {
+  .animated-card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .animated-cards-header {
+    transform: translateY(0%) !important;
   }
 }
