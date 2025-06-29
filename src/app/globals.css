@@ -92,11 +92,11 @@ p {
 
 .home .hero-img {
   position: absolute;
-  left: 80%;
+  left: 50%;
   bottom: 0%;
   transform: translateX(-50%);
-  width: 40%;
-  height: 35vh;
+  width: 50%;
+  height: 80vh;
   overflow: hidden;
 }
 .imc-i {
@@ -192,7 +192,6 @@ p {
 @media (min-width: 1280px) {
   .stat-xl {
     font-size: 8rem;
-    line-height: 1;
   }
 }
 
@@ -548,12 +547,12 @@ p {
   h2 {
     font-size: 1.5rem;
   }
-
+/* 
   .nav {
     flex-direction: column;
     align-items: flex-start;
     padding: 0.5em;
-  }
+  } */
 
   .nav .col:nth-child(2) {
     flex-direction: column;

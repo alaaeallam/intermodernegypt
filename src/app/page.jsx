@@ -32,18 +32,11 @@ export default function Home() {
     <>
       <div className="revealer"></div>
       <div className="home">
-        <div className="header">
-          <h1>
-            <span className="imc-i">i</span>
-            <span className="imc-mc">mc</span>
-          </h1>
-          <Stats />
-        </div>
         <div className="hero-img">
           <img src="/logo.webp" alt="IMC Logo" />
         </div>
-        
       </div>
+      <Stats />
       
     </>
   );
