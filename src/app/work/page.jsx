@@ -2,6 +2,7 @@
 import AnimatedCardGallery from "@/components/AnimatedCardGallery";
 
 
+
 import { useRevealer } from "@/hooks/useRevealer";
 import { useGSAP } from "@gsap/react";
 
@@ -47,7 +48,6 @@ const Work = () => {
           </div> */}
            {/* Add cards inside the .work container */}
         <div style={{ marginTop: "10vh" }}>
-          {/* <Cards /> */}
         </div>
       </div>
 

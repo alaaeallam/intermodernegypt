@@ -1,5 +1,6 @@
 "use client";
 
+import Stats from "@/components/Stats";
 import { useRevealer } from "@/hooks/useRevealer";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -36,11 +37,14 @@ export default function Home() {
             <span className="imc-i">i</span>
             <span className="imc-mc">mc</span>
           </h1>
+          <Stats />
         </div>
         <div className="hero-img">
           <img src="/logo.webp" alt="IMC Logo" />
         </div>
+        
       </div>
+      
     </>
   );
 }

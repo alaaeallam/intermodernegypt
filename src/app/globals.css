@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 :root {
@@ -93,7 +96,7 @@ p {
   bottom: 0%;
   transform: translateX(-50%);
   width: 40%;
-  height: 50vh;
+  height: 40vh;
   overflow: hidden;
 }
 .imc-i {
@@ -551,11 +554,11 @@ p {
     font-size: 20vw;
   }
 
-  .home .hero-img {
+  /* .home .hero-img {
     width: 80%;
     height: 30vh;
     left: 50%;
-  }
+  } */
 
   .work {
     padding: 8em 1em;
