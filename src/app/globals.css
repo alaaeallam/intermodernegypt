@@ -96,7 +96,7 @@ p {
   bottom: 0%;
   transform: translateX(-50%);
   width: 40%;
-  height: 40vh;
+  height: 35vh;
   overflow: hidden;
 }
 .imc-i {
@@ -183,6 +183,17 @@ p {
   background-color: var(--fg);
   pointer-events: none;
   z-index: 2;
+}
+
+.stat-lg {
+  font-size: 5rem;
+}
+
+@media (min-width: 1280px) {
+  .stat-xl {
+    font-size: 8rem;
+    line-height: 1;
+  }
 }
 
 ::view-transition-old(root),
