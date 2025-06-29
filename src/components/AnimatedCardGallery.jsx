@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 import { ReactLenis, useLenis } from "lenis/react";
 import { fetchCards } from "./data";
 
@@ -14,84 +13,85 @@ export default function AnimatedCardGallery() {
 
   const lenis = useLenis(() => {});
 
-  // Fetch cards on mount
   useEffect(() => {
-    fetchCards().then(setCardsData);
+    fetchCards()
+      .then((data) => {
+        console.log("[Sanity Data Fetched]", data);
+        setCardsData(data);
+      })
+      .catch((err) => {
+        console.error("[Error fetching cards]", err);
+      });
   }, []);
 
-  useGSAP(
-    () => {
-      if (cardsData.length === 0) return;  // wait until data is loaded
+  useGSAP(() => {
+    if (!container.current) {
+      console.warn("Container ref is undefined!");
+      return;
+    }
+    if (cardsData.length === 0) {
+      console.warn("No cards data yet. Skipping animation.");
+      return;
+    }
 
-      gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
 
-      const cards = document.querySelectorAll(".card");
-      const images = document.querySelectorAll(".card img");
-      const totalCards = cards.length;
+    const cards = container.current.querySelectorAll(".card");
+    const images = container.current.querySelectorAll(".card img");
+    const totalCards = cards.length;
 
-      gsap.set(cards[0], { y: "0%", scale: 1, rotation: 0 });
-      gsap.set(images[0], { scale: 1 });
+    if (totalCards === 0) {
+      console.warn("No .card elements found in DOM!");
+      return;
+    }
 
-      for (let i = 1; i < totalCards; i++) {
-        gsap.set(cards[i], { y: "100%", scale: 1, rotation: 0 });
-        gsap.set(images[i], { scale: 1 });
-      }
+    console.log("[GSAP INIT] Cards found:", totalCards);
 
-      const scrollTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".sticky-cards",
-          start: "top top",
-          end: `+=${window.innerHeight * (totalCards - 1)}`,
-          pin: true,
-          scrub: 0.5,
-        },
-      });
+    gsap.set(cards[0], { y: "0%", scale: 1, rotation: 0 });
+    gsap.set(images[0], { scale: 1 });
 
-      for (let i = 0; i < totalCards - 1; i++) {
-        const currentCard = cards[i];
-        const currentImage = images[i];
-        const nextCard = cards[i + 1];
-        const position = i;
+    for (let i = 1; i < totalCards; i++) {
+      gsap.set(cards[i], { y: "100%", scale: 1, rotation: 0 });
+      gsap.set(images[i], { scale: 1 });
+    }
 
-        scrollTimeline.to(
-          currentCard,
-          {
-            scale: 0.5,
-            rotation: 10,
-            duration: 1,
-            ease: "none",
-          },
-          position
-        );
+    const scrollTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".sticky-cards",
+        start: "top top",
+        end: `+=${window.innerHeight * (totalCards - 1)}`,
+        pin: true,
+        scrub: 0.5,
+        markers: false,
+      },
+    });
 
-        scrollTimeline.to(
-          currentImage,
-          {
-            scale: 1.5,
-            duration: 1,
-            ease: "none",
-          },
-          position
-        );
+    for (let i = 0; i < totalCards - 1; i++) {
+      scrollTimeline.to(cards[i], {
+        scale: 0.5,
+        rotation: 10,
+        duration: 1,
+        ease: "none",
+      }, i);
 
-        scrollTimeline.to(
-          nextCard,
-          {
-            y: "0%",
-            duration: 1,
-            ease: "none",
-          },
-          position
-        );
-      }
+      scrollTimeline.to(images[i], {
+        scale: 1.5,
+        duration: 1,
+        ease: "none",
+      }, i);
 
-      return () => {
-        scrollTimeline.kill();
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      };
-    },
-    { dependencies: [cardsData], scope: container }
-  );
+      scrollTimeline.to(cards[i + 1], {
+        y: "0%",
+        duration: 1,
+        ease: "none",
+      }, i);
+    }
+
+    return () => {
+      scrollTimeline.kill();
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, { dependencies: [cardsData], scope: container });
 
   return (
     <ReactLenis root>
@@ -105,12 +105,26 @@ export default function AnimatedCardGallery() {
 
         <section className="sticky-cards">
           <div className="cards-container">
+            {cardsData.length === 0 && (
+              <p className="loading">Loading cards...</p>
+            )}
             {cardsData.map((card, i) => (
               <div className="card" key={i}>
                 <div className="tag">
                   <p>{card.title}</p>
                 </div>
-                <img src={card.img} alt={card.title} />
+                {card.image?.asset?.url ? (
+                  <img
+                    src={card.image.asset.url}
+                    alt={card.title}
+                    onError={(e) => {
+                      console.error("[Broken image]", card.image.asset.url);
+                      e.target.style.display = "none";
+                    }}
+                  />
+                ) : (
+                  <p className="no-images">No image available</p>
+                )}
               </div>
             ))}
           </div>
