@@ -1,14 +1,11 @@
 "use client";
 import AnimatedCardGallery from "@/components/AnimatedCardGallery";
-
-
-
 import { useRevealer } from "@/hooks/useRevealer";
 import { useGSAP } from "@gsap/react";
 
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
-import ReactLenis from "lenis/react";
+
 
 gsap.registerPlugin(SplitText);
 
@@ -38,6 +35,7 @@ const Work = () => {
         <div className="revealer"></div>
         <div className="work">
           <AnimatedCardGallery />
+          
         <div style={{ marginTop: "10vh" }}>
         </div>
       </div>

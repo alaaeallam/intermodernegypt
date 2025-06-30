@@ -8,12 +8,12 @@ const stats = [
 		text: "Years of Building Projects",
 	},
 	{
-		num: 57,
+		num: 85,
 		text: "Projects Delivered Successfully",
 	},
 	{
-		num: 5,
-		text: "Sectors served (Residential, Commercial, Hospitality)",
+		num: 9,
+		text: "Collaberated with a diverse array of sectors",
 	},
 	
 ];

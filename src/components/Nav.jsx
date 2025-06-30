@@ -50,17 +50,22 @@ const Nav = () => {
         <div className="nav-items">
           <div className="nav-item">
             <Link onClick={handleNavigation("/work")} href="/work">
-              work
+              Work
+            </Link>
+          </div>
+          <div className="nav-item">
+            <Link onClick={handleNavigation("/list")} href="/list">
+              List Of Projects
             </Link>
           </div>
           <div className="nav-item">
             <Link onClick={handleNavigation("/studio")} href="/studio">
-              studio
+              About
             </Link>
           </div>
           <div className="nav-item">
             <Link onClick={handleNavigation("/contact")} href="/contact">
-              contact
+              Contact
             </Link>
           </div>
         </div>
